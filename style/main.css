@@ -1,5 +1,9 @@
 * { Box-sizing: Border-box }
 
+body {
+    background-color: #DDDDDD;
+}
+
 .absolute {
     position:absolute;
 }
