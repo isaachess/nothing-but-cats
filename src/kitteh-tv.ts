@@ -13,24 +13,29 @@ export default class KittehTV {
     constructor(
         private http:Http
     ) {
-        this.changeChannel()
+        this.loadMoreKitteh()
+        this.index = 0
     }
 
-    changeChannel() {
+    loadMoreKitteh() {
         return this.http.get('http://www.reddit.com/r/catgifs/new.json?sort=random').toRx().toPromise()
-        .then((rs) => this.selectKitteh(rs.json().data.children))
+        .then((rs) => {
+            var posts = rs.json().data.children
+            this.posts = _.filter(posts, (post) => goodUrl(post.data.url))
+            this.changeChannel()
+        })
     }
 
-    selectKitteh(posts) {
-        //var test1 = 'http://ma-gh.com/wp-content/uploads/cats-cute-cat-animal-cute-grass-photo.jpg'
-        //var test2 = 'https://www.google.com/images/srpr/logo11w.png'
-        //if (this.kittehUrl == test1) this.kittehUrl = test2
-        //else this.kittehUrl = test1
-        var filtered = _.filter(posts, (post) => goodUrl(post.data.url))
-        var index = _.random(0, filtered.length)
-        this.post = filtered[index]
+    changeChannel(posts) {
+        if (!this.posts) throw new Error("No posts!")
+        if (this.index+1 == this.posts.length) {
+            this.index = 0
+            this.loadMoreKitteh()
+            return
+        }
+        this.index = (typeof this.index === 'undefined') ? 0 : this.index+1
+        this.post = this.posts[this.index]
         this.kittehUrl = this.post.data.url
-        console.log('this.kittehUrl', this.kittehUrl)
     }
 }
 
