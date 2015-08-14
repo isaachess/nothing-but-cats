@@ -1,3 +1,15 @@
 .stretch-width {
     width: 100%;
 }
+
+.tv-container {
+    width: 800px;
+    height: 800px;
+    position: relative;
+}
+
+.kitteh-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

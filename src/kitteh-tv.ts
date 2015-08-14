@@ -14,18 +14,21 @@ export default class KittehTV {
         private http:Http
     ) {
         console.log('http', http.get);
-        this.grabKitteh()
+        this.changeChannel()
     }
 
-    grabKitteh() {
+    changeChannel() {
+        console.log('changeChannel')
         return this.http.get('http://www.reddit.com/r/catgifs/new.json?sort=random').toRx().toPromise()
         .then((rs) => this.selectKitteh(rs.json().data.children))
     }
 
     selectKitteh(posts) {
+        console.log('selectKitteh')
         var index = _.random(0, posts.length)
+        //var filtered = _.filter(posts, (post) => post.data.url)
         this.post = posts[index]
-        console.log('post', this.post)
+        this.kittehUrl = this.post.data.url
+        console.log('this.kittehUrl', this.kittehUrl)
     }
-
 }
