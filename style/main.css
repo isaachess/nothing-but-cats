@@ -17,6 +17,8 @@
     width: 800px;
     height: 538px;
     position: relative;
+    margin: 0 auto;
+    padding-top: 100px;
 }
 
 .kitteh-gif-container {

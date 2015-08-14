@@ -23,9 +23,6 @@ import KittehTV from "./kitteh-tv";
 @View({
     directives: [RouterOutlet, RouterLink],
     template: `
-        <nav>
-            <a [router-link]="['/home']">Home</a>
-        </nav>
         <main>
             <router-outlet></router-outlet>
         </main>
