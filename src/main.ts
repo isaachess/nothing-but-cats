@@ -24,7 +24,6 @@ import RepoList from "./repo-list";
     template: `
         <nav>
             <a [router-link]="['/home']">Home</a>
-            <a [router-link]="['/repo-list']">Repo List</a>
         </nav>
         <main>
             <router-outlet></router-outlet>
