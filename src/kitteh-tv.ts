@@ -15,7 +15,7 @@ import {Http} from "angular2/http";
                 </div>
             </div>
             <div class="stretch absolute">
-                <img class="stretch" (click)="changeChannel()" src="/img/TV-HOF.png"/>
+                <img class="stretch" (click)="changeChannel()" src="img/TV-HOF.png"/>
             </div>
         </div>
         <div *ng-for="#post of posts" class="off-screen"><img src="{{getPostUrl(post)}}"></div>

@@ -47,7 +47,7 @@ var KittehTV = (function () {
         angular2_1.View({
             directives: [angular2_1.NgFor],
             //templateUrl: '/src/kitteh-tv.html',
-            template: "\n        <div class=\"tv-container\">\n            <div class=\"kitteh-gif-container stretch absolute\">\n                <div class=\"kitteh-gif-container-inner stretch\">\n                    <img class=\"kitteh-gif stretch\" src=\"{{kittehUrl}}\"/>\n                </div>\n            </div>\n            <div class=\"stretch absolute\">\n                <img class=\"stretch\" (click)=\"changeChannel()\" src=\"/img/TV-HOF.png\"/>\n            </div>\n        </div>\n        <div *ng-for=\"#post of posts\" class=\"off-screen\"><img src=\"{{getPostUrl(post)}}\"></div>\n    "
+            template: "\n        <div class=\"tv-container\">\n            <div class=\"kitteh-gif-container stretch absolute\">\n                <div class=\"kitteh-gif-container-inner stretch\">\n                    <img class=\"kitteh-gif stretch\" src=\"{{kittehUrl}}\"/>\n                </div>\n            </div>\n            <div class=\"stretch absolute\">\n                <img class=\"stretch\" (click)=\"changeChannel()\" src=\"img/TV-HOF.png\"/>\n            </div>\n        </div>\n        <div *ng-for=\"#post of posts\" class=\"off-screen\"><img src=\"{{getPostUrl(post)}}\"></div>\n    "
         }), 
         __metadata('design:paramtypes', [(typeof Http !== 'undefined' && Http) || Object])
     ], KittehTV);
