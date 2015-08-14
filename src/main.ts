@@ -11,9 +11,10 @@ import {EventEmitter, ObservableWrapper} from 'angular2/src/facade/async';
 
 import Home from "./home";
 import RepoList from "./repo-list";
+import KittehTV from "./kitteh-tv";
 
 @RouteConfig([
-    {path: '/', as: "home", component:Home},
+    {path: '/', as: "home", component:KittehTV},
     {path: '/repo-list', as: "repo-list", component:RepoList},
 ])
 @Component({
@@ -40,3 +41,5 @@ bootstrap(App, [
         success => console.log(`Bootstrap success`),
         error => console.log(error)
 );
+
+
