@@ -1,11 +1,11 @@
-import {formDirectives, Component, View, bootstrap} from "angular2/angular2";
+import {formDirectives, Component, View, bootstrap, NgFor} from "angular2/angular2";
 import {Http} from "angular2/http";
 
 @Component({
     selector: "kitteh-tv"
 })
 @View({
-    directives: [],
+    directives: [NgFor],
     templateUrl: '/src/kitteh-tv.html',
 })
 export default class KittehTV {
@@ -35,7 +35,11 @@ export default class KittehTV {
         }
         this.index = (typeof this.index === 'undefined') ? 0 : this.index+1
         this.post = this.posts[this.index]
-        this.kittehUrl = this.post.data.url
+        this.kittehUrl = this.getPostUrl(this.post)
+    }
+
+    getPostUrl(post) {
+        return post.data.url
     }
 }
 

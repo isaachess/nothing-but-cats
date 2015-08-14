@@ -40,3 +40,8 @@
 .front {
     z-index: 100;
 }
+
+.off-screen {
+    position: absolute;
+    top: -10000px;
+}
