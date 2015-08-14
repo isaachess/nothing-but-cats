@@ -18,7 +18,7 @@ var KittehTV = (function () {
     }
     KittehTV.prototype.loadMoreKitteh = function () {
         var _this = this;
-        return this.http.get('http://www.reddit.com/r/catgifs/new.json?sort=random').toRx().toPromise()
+        return this.http.get('http://www.reddit.com/r/catgifs/new.json?limit=100').toRx().toPromise()
             .then(function (rs) {
             var posts = rs.json().data.children;
             _this.posts = _.filter(posts, function (post) { return goodUrl(post.data.url); });
