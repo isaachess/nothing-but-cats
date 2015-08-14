@@ -1,4 +1,8 @@
 <div class="tv-container">
-    <img class="stretch-width" (click)="changeChannel()" src="/img/TV-HOF.png"/>
-    <img class="kitteh-gif" src="{{kittehUrl}}" />
+    <div class="kitteh-gif-container stretch-width absolute">
+        <img class="kitteh-gif stretch-width" src="{{kittehUrl}}"/>
+    </div>
+    <div class="stretch-width absolute">
+        <img class="stretch-width absolute" (click)="changeChannel()" src="/img/TV-HOF.png"/>
+    </div>
 </div>
