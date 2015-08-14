@@ -6,9 +6,7 @@ import {Http} from "angular2/http";
 })
 @View({
     directives: [],
-    template: `
-        <img class="stretch-width" src="/img/TV-HOF.png"/>
-    `
+    templateUrl: '/src/kitteh-tv.html',
 })
 export default class KittehTV {
 
