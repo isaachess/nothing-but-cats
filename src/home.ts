@@ -7,12 +7,7 @@ import {Http} from "angular2/http";
 })
 @View({
     directives: [formDirectives],
-    //I could've just onButtonClick(name), but wanted to show #input syntax
     template: 'hi',
-    //template:`
-        //<div>Welcome to the <button (click)="onButtonClick(input.value)">{{name}}</button></div>
-        //<input #input [(ng-model)]="name">
-    //`
 })
 export default class Home {
 
@@ -24,10 +19,14 @@ export default class Home {
     }
 
     grabKitteh() {
-        //return this.http.get('http://www.reddit.com/r/catgifs/new.json?sort=random').toRx().map((res) => res.json())
-        //.subscribe(data => console.log('data', data))
         return this.http.get('http://www.reddit.com/r/catgifs/new.json?sort=random').toRx().toPromise()
-        .then((rs) => console.log('rs', rs.json()))
+        .then((rs) => this.selectKitteh(rs.json().data.children))
+    }
+
+    selectKitteh(posts) {
+        var index = _.random(0, posts.length)
+        this.post = posts[index]
     }
 
 }
+

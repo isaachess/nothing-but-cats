@@ -1,0 +1,22 @@
+{
+  "name": "nothing-but-cats",
+  "version": "1.0.0",
+  "description": "It uses the in-browser TypeScript compiler, so no tools are required. Just edit the .ts files.",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isaachess/nothing-but-cats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isaachess/nothing-but-cats/issues"
+  },
+  "homepage": "https://github.com/isaachess/nothing-but-cats",
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
+}
