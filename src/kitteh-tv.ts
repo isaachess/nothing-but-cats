@@ -6,7 +6,20 @@ import {Http} from "angular2/http";
 })
 @View({
     directives: [NgFor],
-    templateUrl: '/src/kitteh-tv.html',
+    //templateUrl: '/src/kitteh-tv.html',
+    template: `
+        <div class="tv-container">
+            <div class="kitteh-gif-container stretch absolute">
+                <div class="kitteh-gif-container-inner stretch">
+                    <img class="kitteh-gif stretch" src="{{kittehUrl}}"/>
+                </div>
+            </div>
+            <div class="stretch absolute">
+                <img class="stretch" (click)="changeChannel()" src="/img/TV-HOF.png"/>
+            </div>
+        </div>
+        <div *ng-for="#post of posts" class="off-screen"><img src="{{getPostUrl(post)}}"></div>
+    `
 })
 export default class KittehTV {
 
