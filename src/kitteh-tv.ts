@@ -1,11 +1,11 @@
-import {formDirectives, Component, View, bootstrap} from "angular2/angular2";
+import {formDirectives, Component, View, bootstrap, NgFor} from "angular2/angular2";
 import {Http} from "angular2/http";
 
 @Component({
     selector: "kitteh-tv"
 })
 @View({
-    directives: [],
+    directives: [NgFor],
     templateUrl: '/src/kitteh-tv.html',
 })
 export default class KittehTV {
@@ -15,33 +15,37 @@ export default class KittehTV {
     constructor(
         private http:Http
     ) {
-        this.changeChannel()
+        this.loadMoreKitteh()
+        this.index = 0
     }
 
-    changeChannel() {
-        console.log("change channel")
+    loadMoreKitteh() {
         var query = (!!this.redditAfterValue) ? '?after='+this.redditAfterValue : ''
         var url = 'http://www.reddit.com/r/catgifs/new.json' + query
         return this.http.get(url).toRx().toPromise()
         .then((rs) => {
-            console.log("stuff")
             var redditListing = rs.json().data
-            console.log("listing", redditListing)
-            this.selectKitteh(redditListing.children)
+            var posts = redditListing.children
+            this.posts = _.filter(posts, (post) => goodUrl(post.data.url))
+            this.changeChannel()
             this.redditAfterValue = redditListing.after
         })
     }
 
-    selectKitteh(posts) {
-        //var test1 = 'http://ma-gh.com/wp-content/uploads/cats-cute-cat-animal-cute-grass-photo.jpg'
-        //var test2 = 'https://www.google.com/images/srpr/logo11w.png'
-        //if (this.kittehUrl == test1) this.kittehUrl = test2
-        //else this.kittehUrl = test1
-        var filtered = _.filter(posts, (post) => goodUrl(post.data.url))
-        var index = _.random(0, filtered.length)
-        this.post = filtered[index]
-        this.kittehUrl = this.post.data.url
-        console.log('this.kittehUrl', this.kittehUrl)
+    changeChannel(posts) {
+        if (!this.posts) throw new Error("No posts!")
+        if (this.index+1 == this.posts.length) {
+            this.index = 0
+            this.loadMoreKitteh()
+            return
+        }
+        this.index = (typeof this.index === 'undefined') ? 0 : this.index+1
+        this.post = this.posts[this.index]
+        this.kittehUrl = this.getPostUrl(this.post)
+    }
+
+    getPostUrl(post) {
+        return post.data.url
     }
 }
 
