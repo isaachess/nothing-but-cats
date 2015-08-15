@@ -10,6 +10,8 @@ import {Http} from "angular2/http";
 })
 export default class KittehTV {
 
+    private redditAfterValue:string; // reddit gives us an "after" value in the json response.  If we query with it, we'll get the next batch.
+
     constructor(
         private http:Http
     ) {
@@ -17,8 +19,17 @@ export default class KittehTV {
     }
 
     changeChannel() {
-        return this.http.get('http://www.reddit.com/r/catgifs/new.json?sort=random').toRx().toPromise()
-        .then((rs) => this.selectKitteh(rs.json().data.children))
+        console.log("change channel")
+        var query = (!!this.redditAfterValue) ? '?after='+this.redditAfterValue : ''
+        var url = 'http://www.reddit.com/r/catgifs/new.json' + query
+        return this.http.get(url).toRx().toPromise()
+        .then((rs) => {
+            console.log("stuff")
+            var redditListing = rs.json().data
+            console.log("listing", redditListing)
+            this.selectKitteh(redditListing.children)
+            this.redditAfterValue = redditListing.after
+        })
     }
 
     selectKitteh(posts) {
